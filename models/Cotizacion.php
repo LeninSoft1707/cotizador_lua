@@ -321,6 +321,29 @@
             // TODO: Retorna el resultado de la consulta.
             return $resultado = $sql->fetchAll();
         }
+
+        public function get_cotizacion_x_usuario($usu_id){
+            // TODO: Establece la conexión a la base de datos.
+            $conectar = parent::Conexion();
+        
+            // TODO: Configura el conjunto de caracteres de la conexión a UTF-8.
+            parent::set_names();
+            
+            // TODO: Define una consulta SQL para cambiar el estado (`est`) de un contacto a 0, lo que efectivamente lo desactiva.
+            $sql = "CALL sp_l_cotizacion_002 (?)";
+            
+            // TODO: Prepara la consulta SQL.
+            $sql = $conectar->prepare($sql);
+            
+            // TODO: Enlaza el ID del contacto al primer parámetro de la consulta.
+            $sql->bindValue(1, $usu_id);
+            
+            // TODO: Ejecuta la consulta SQL para desactivar el contacto.
+            $sql->execute();
+            
+            // TODO: Retorna el resultado de la consulta.
+            return $resultado = $sql->fetchAll();
+        }
     }
 
 

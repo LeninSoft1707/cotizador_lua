@@ -97,7 +97,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link text-white" href="../pages/billing.html">
+                    <a class="nav-link text-white" href="../ListCotizacion/index.php">
                       <i class="material-icons opacity-10">arrow_forward</i>
                       <span class="nav-link-text ms-1">Listado Cotización</span>
                     </a>

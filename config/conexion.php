@@ -33,7 +33,7 @@
     
         // TODO: Método estático que devuelve la URL base del proyecto.
         public static function ruta() {
-            return "http://localhost:90/PERSONAL_COTIZADOR/";
+            return "http://localhost:90/Cotizador_lua/";
         }
     }
 

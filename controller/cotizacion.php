@@ -209,6 +209,10 @@
                         $output["mes_en_texto"] = $row["mes_en_texto"];
                         $output["fech_respuesta"] = $row["fech_respuesta"];
                         $output["fech_respuesta_format"] = $row["fech_respuesta_format"];
+                        $output["fech_crea"] = $row["fech_crea"];
+                        $output["fech_crea_format_hms"] = $row["fech_crea_format_hms"];
+                        $output["fech_envio_format"] = $row["fech_envio_format"];
+                        $output["fech_visto_format"] = $row["fech_visto_format"];
     
                         $output["usu_id"] = $row["usu_id"];
                         $output["usu_nom"] = $row["usu_nom"];
@@ -295,27 +299,55 @@
             } else {
                 echo json_encode(1); // En caso de que no haya datos, ocultar el div
             }
-            break;
+        break;
+
+        case "listarporusuario":
+            // Validar que se reciban los datos
+           if (isset($_POST["usu_id"])) {
+           
+               $datos = $cotizacion->get_cotizacion_x_usuario($_POST["usu_id"]);
+               $data = Array();
+               foreach($datos as $row){
+                   $sub_array = array();
+                   $sub_array[] = htmlspecialchars($row["cot_id"]); // Evita XSS
+                   $sub_array[] = htmlspecialchars($row["cli_nom"]); // Evita XSS
+                   $sub_array[] = htmlspecialchars($row["cli_ruc"]); // Evita XSS
+                   $sub_array[] = htmlspecialchars($row["con_nom"]); // Evita XSS
+                   $sub_array[] = htmlspecialchars($row["con_email"]); // Evita XSS
+                   $sub_array[] = htmlspecialchars($row["cot_subtotal"]); // Evita XSS
+                   $sub_array[] = htmlspecialchars($row["cot_profit"]); // Evita XSS
+                   $sub_array[] = htmlspecialchars($row["cot_total"]); // Evita XSS
+                   $sub_array[] = htmlspecialchars($row["fech_crea_dma"]); // Evita XSS
+                   
+                   
+                   if($row["cot_tipo"]=='Rechazado'){
+                    $sub_array[] = "<small class='text-xxs alert alert-danger text-white text-uppercase' style='padding: 8px 8px; important!'>Rechazado</small>";
+                   }else if($row["cot_tipo"]=='Aceptado'){
+                    $sub_array[] = "<small class='text-xs alert alert-success text-white text-uppercase' style='padding: 8px 8px; important!'>Aceptado</small>";
+                   }else if($row["cot_tipo"]=='Borrador'){
+                    $sub_array[] = "<small class='text-xs alert alert-info text-white text-uppercase' style='padding: 8px 8px; important!'>Borrador</small>";
+                   }else if($row["cot_tipo"]=='visto'){
+                    $sub_array[] = "<small class='text-xs alert alert-dark text-white text-uppercase' style='padding: 8px 8px; important!'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Visto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</small>";
+                   }else if($row["cot_tipo"]=='Enviado'){
+                    $sub_array[] = "<small class='text-xs alert alert-warning text-white text-uppercase' style='padding: 8px 8px; important!'>&nbsp;&nbsp;Enviado&nbsp;&nbsp;</small>";
+                   }
+                   
+                   $sub_array[] = '<button type="button" onClick="verfecha('.$row["cot_id"].')" id="'.$row["cot_id"].'" class="btn bg-gradient-white w-100 pd-0 mi-btn"><i class="material-icons opacity-10">calendar_month</i></button>';
+                  
+                   $data[] = $sub_array;
+               }
+    
+               $results = array(
+                   "sEcho" => 1,
+                   "iTotalRecords" => count($data),
+                   "iTotalDisplayRecords" => count($data),
+                   "aaData" => $data
+               );
+               echo json_encode($results);
+           }
+        break;
         
-        // case "ocultarrespuesta":
-        //     // Validar que se reciban los datos
-        //     // Insertar una nueva 
-        //     $datos=$cotizacion->get_cotizacion($_POST["cot_id"]);
-        //     if(is_array($datos)==true and count($datos) > 0){
-        //         foreach($datos as $row){
-        //             if($row["fech_respuesta"]==null){
-        //                 $datos = $cotizacion->update_cotizacion_visto($_POST["cot_id"]);
-        //                 $email->visto_cotizacion($_POST["cot_id"]);
-        //                 if(is_array($datos)==true and count($datos) > 0){
-        //                     echo json_encode(0);
-        //                 } else {
-        //                     echo json_encode($output);
-        //                 }
-                       
-        //             }
-        //         }
-        //     }
-        // break;
+
 
     }
 ?>
