@@ -1,11 +1,11 @@
-<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-dark" id="sidenav-main">
     <div class="sidenav-header">
 
       <input type="hidden" id="xusu_id" name="xusu_id" value="<?php echo $_SESSION["usu_id"]?>">
       
       <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <div class="navbar-brand m-0" target="_blank">
-        <img src="../../assets/img/bruce-mars.jpg" alt="profile_image" class="objet-fit-cover">
+        <img src="../../assets/img/user2.png" alt="profile_image" class="objet-fit-cover">
         <span class="ms-1 font-weight-bold text-white" style="font-size: 1.1em"><?php echo $_SESSION["usu_nom"]?></span>
         <p class="mb-0 font-weight-normal text-white" style="font-size: 1.1em">
           <?php echo $_SESSION["usu_correo"]?>
@@ -108,13 +108,5 @@
         </li>
       </ul>
   </div>
-
-
-    <div class="sidenav-footer position-absolute w-100 bottom-0 ">
-      <div class="mx-3">
-        <a class="btn btn-outline-primary mt-4 w-100" href="https://www.creative-tim.com/learning-lab/bootstrap/overview/material-dashboard?ref=sidebarfree" type="button">Documentation</a>
-        <a class="btn bg-gradient-primary w-100" href="https://www.creative-tim.com/product/material-dashboard-pro?ref=sidebarfree" type="button">Upgrade to pro</a>
-      </div>
-    </div>
 </aside>
 

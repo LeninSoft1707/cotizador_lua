@@ -115,9 +115,10 @@ $(document).ready(function() {
             }
         }
 
-        // TODO: Verifica si estamos en el paso 2 y si faltan datos en los campos del paso 2
+        // Validación para avanzar al siguiente paso
         if (currentStep === 2) {
-            if ($('#cat_id').val() === "" || $('#prod_id').val() === "" || $('#cotd_precio').val() === "" || $('#cotd_cant').val() === "") {
+            // Permitir avanzar si al menos un producto ha sido agregado, aunque los campos estén vacíos
+            if (!productoAgregado && ($('#cat_id').val() === "" || $('#prod_id').val() === "" || $('#cotd_precio').val() === "" || $('#cotd_cant').val() === "")) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
@@ -129,52 +130,13 @@ $(document).ready(function() {
                     buttonsStyling: false
                 });
 
-                return; // TODO: Detiene el avance si faltan datos en el paso 2
+                return; // Detiene el avance si faltan datos en el paso 2 y no se ha agregado ningún producto
             }
         }
+      
 
         // TODO: Si los datos están completos, guarda el borrador en la base de datos
         guardarBorrador();
-
-        // TODO: Si no faltan datos, avanza al siguiente paso
-        // if (currentStep < totalSteps) {
-        //     currentStep++; // TODO: Incrementa el contador de paso actual
-        //     showStep(currentStep); // TODO: Muestra el siguiente paso
-        // } else if (currentStep === totalSteps) {
-        //     // Confirmar si el usuario desea enviar el formulario y el correo
-        //     Swal.fire({
-        //         title: "¿Estás seguro?",
-        //         text: "¿Deseas enviar la cotización al correo?",
-        //         icon: "warning",
-        //         showCancelButton: true,
-        //         confirmButtonText: "Sí, enviar",
-        //         cancelButtonText: "Cancelar",
-        //         customClass: {
-        //             confirmButton: "btn btn-primary",
-        //             cancelButton: "btn btn-secondary"
-        //         },
-        //         buttonsStyling: false
-        //     }).then((result) => {
-        //         if (result.isConfirmed) {
-        //             // El usuario ha confirmado, procede con el envío del formulario
-        //             enviarFormulario(); // Llama a la función para enviar el formulario
-
-        //             // Mostrar un modal de "procesando" mientras se envía el correo
-        //             Swal.fire({
-        //                 title: 'Enviando correo...',
-        //                 html: 'Por favor, espere mientras se envía el correo al cliente.',
-        //                 allowOutsideClick: false,
-        //                 allowEscapeKey: false,
-        //                 didOpen: () => {
-        //                     Swal.showLoading();
-        //                 }
-        //             });
-
-        //             // Llama a la función para enviar el correo al cliente
-        //             enviarCorreo();
-        //         }
-        //     });
-        // }
 
         if (currentStep < totalSteps) {
             currentStep++; // Incrementa el contador de paso actual
@@ -211,15 +173,6 @@ $(document).ready(function() {
             });
         }
         
-        // TODO: Si no faltan datos, avanza al siguiente paso
-        // if (currentStep < totalSteps) {
-        //     currentStep++; // TODO: Incrementa el contador de paso actual
-        //     showStep(currentStep); // TODO: Muestra el siguiente paso
-        // } else if (currentStep === totalSteps) {
-        //     enviarFormulario(); // TODO:Llama a la función para enviar el formulario
-        //     enviarCorreo(); // Llama a la función para enviar el correo al cliente
-            
-        // }
         
         // Verifica si estamos en el paso 4 y carga los datos del cliente
         if (currentStep === 4) {
@@ -406,85 +359,6 @@ $(document).ready(function() {
             }
         });
     }
-
-    // function enviarFormulario() {
-    //     // Preguntar al usuario si está seguro de enviar el correo
-    //     Swal.fire({
-    //         title: "¿Estás seguro?",
-    //         text: "¿Deseas enviar esta cotización?",
-    //         icon: "warning",
-    //         showCancelButton: true,
-    //         confirmButtonText: "Sí, enviar",
-    //         cancelButtonText: "Cancelar",
-    //         customClass: {
-    //             confirmButton: "btn btn-primary",
-    //             cancelButton: "btn btn-secondary"
-    //         },
-    //         buttonsStyling: false
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             // El usuario ha confirmado, procede con el envío del formulario
-    //             var cot_id = $('#cot_id').val();
-    //             var cot_saludo = $('#v_cot_saludo').val();
-    //             var cot_adicional = $('#v_cot_adicional').val();
-    //             var cot_contrato = $('#v_cot_contrato').val();
-                
-    //             // Mostrar un modal de "procesando"
-    //             Swal.fire({
-    //                 title: 'Enviando...',
-    //                 html: 'Por favor, espere mientras se envía la cotización.',
-    //                 allowOutsideClick: false,
-    //                 allowEscapeKey: false,
-    //                 didOpen: () => {
-    //                     Swal.showLoading();
-    //                 }
-    //             });
-    
-    //             // Realiza la solicitud AJAX para enviar los datos
-    //             $.ajax({
-    //                 url: "../../controller/cotizacion.php?op=actualizar",
-    //                 type: "POST",
-    //                 data: {
-    //                     cot_id: cot_id,
-    //                     cot_saludo: cot_saludo,
-    //                     cot_adicional: cot_adicional,
-    //                     cot_contrato: cot_contrato
-    //                 },
-    //                 dataType: "json",
-    //                 success: function(response) {
-    //                     // Cerrar el modal de carga y mostrar confirmación de éxito
-    //                     Swal.fire({
-    //                         icon: 'success',
-    //                         title: 'Enviado',
-    //                         text: 'Cotización enviada con éxito',
-    //                         confirmButtonText: 'Ok',
-    //                         customClass: {
-    //                             confirmButton: 'btn btn-success'
-    //                         },
-    //                         buttonsStyling: false
-    //                     });
-    //                 },
-    //                 error: function(xhr, status, error) {
-    //                     // Manejar errores y mostrar un mensaje de fallo
-    //                     console.error("Error en la solicitud AJAX:", xhr.responseText);
-    //                     console.error("Estado:", status);
-    //                     console.error("Error:", error);
-    
-    //                     Swal.fire({
-    //                         icon: 'error',
-    //                         title: 'Error',
-    //                         text: 'Hubo un problema al enviar la cotización',
-    //                         confirmButtonText: 'Ok',
-    //                         customClass: {
-    //                             confirmButton: 'btn btn-danger'
-    //                         },
-    //                         buttonsStyling: false
-    //                     });
-    //                 }
-    //             });
-    //         }
-    //     });
-    // }
     
 
     // TODO: Funcion para enviar el correo electronico al cliente
@@ -506,6 +380,11 @@ $(document).ready(function() {
                         confirmButton: 'btn btn-success'
                     },
                     buttonsStyling: false
+                }).then(function() {
+                    // Añadimos una pequeña espera para asegurar el cierre del modal
+                    setTimeout(function() {
+                        window.location.assign("index.php"); // Cambia la ruta según tu proyecto
+                    }, 500); 
                 });
             }).fail(function() {
                 Swal.fire({
@@ -544,6 +423,8 @@ $(document).ready(function() {
     showStep(currentStep);
 
     //TODO: AGREGAR DETALLE DEL BOTON DEL PASO 2
+    var productoAgregado = false; // Variable para verificar si se ha agregado un producto
+
     $(document).on('click', '#btnagregardetalle', function() {
         var cot_id = $('#cot_id').val();
         var cat_id = $('#cat_id').val();
@@ -551,6 +432,7 @@ $(document).ready(function() {
         var cotd_precio = $('#cotd_precio').val();
         var cotd_cant = $('#cotd_cant').val();
 
+        // Validar los campos antes de agregar el producto
         if(cat_id=="" || prod_id=="" || cotd_precio=="" || cotd_cant==""){
             Swal.fire({
                 icon: 'error',
@@ -562,16 +444,8 @@ $(document).ready(function() {
                 },
                 buttonsStyling: false
             });
-        }else{
-            console.log("Enviando datos a la base de datos:", {
-                cot_id: cot_id,
-                cat_id: cat_id,
-                prod_id: prod_id,
-                cotd_precio: cotd_precio,
-                cotd_cant: cotd_cant,
-                cotd_tipo:'D'
-            });
-            
+        } else {
+            // Enviar datos a la base de datos
             $.ajax({
                 type: 'POST',
                 url: "../../controller/cotizacion.php?op=dguardar",
@@ -585,20 +459,43 @@ $(document).ready(function() {
                 },
                 dataType: 'json',
                 success: function(data) {
+                    listard(cot_id); // Actualiza la lista de productos
 
-                    // $('#mdlcarga').modal('hide');
-                    // $('#mdlmnt').modal('show');
-                    listard(cot_id);
-                    console.log("cotd_id" + data.cot_id);
-                    
+                    // Limpia los campos
+                    $('#cat_id').val('');
+                    $('#prod_id').val('');
+                    $('#cotd_precio').val('');
+                    $('#cotd_cant').val('');
+                    $('#cotd_total').val('');
+
+                    // Cambia el estado de la variable para permitir avanzar
+                    productoAgregado = true;
+
+                    // Mostrar notificación Gritter
+                    $.gritter.add({
+                        title: 'Producto agregado',
+                        text: 'El producto se ha agregado correctamente.',
+                        time: 3000, // Se cierra automáticamente después de 3 segundos
+                        class_name: 'gritter-success' 
+                    });
                 },
                 error: function(error) {
-                    // $('#mdlcarga').modal('hide');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'No se pudo agregar el producto',
+                        confirmButtonText: 'Ok',
+                        customClass: {
+                            confirmButton: 'btn btn-danger'
+                        },
+                        buttonsStyling: false
+                    });
                 }
             });
-
         }
     });
+
+    
 
     // TODO: AGREGAR DETALLE DEL BOTON DEL PASO 3
     $(document).on('click', '#btnagregardetalle_a', function() {
@@ -761,6 +658,7 @@ $(document).ready(function() {
                     "sSortDescending": ": Activar para ordenar la columna de manera descendente"
                 }
             }
+            
         }).DataTable();
 
         $('#mdltitulo').html('Editar Registro');

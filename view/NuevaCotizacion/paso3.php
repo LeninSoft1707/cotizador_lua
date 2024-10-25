@@ -12,7 +12,7 @@
                         </div>
                         <div class="collapse show" id="collapseFieldset3">
                             <fieldset>
-                                <div class="row">
+                                <div class="row mx-3">
                                     <div class="col-md-6 mb-3">
                                         <label for="cat_id_a" class="form-label">Categoria:</label>
                                         <select class="form-control" id="cat_id_a" name="cat_id_a">
@@ -43,7 +43,7 @@
                                             Agregar
                                         </button>
                                     </div>
-                                    <div class="card-body pb-3 pt-3">
+                                    <div class="card-body p-2">
                                         <div class="table-responsive p-0">
                                             <table id="detalle_data_a" class="table align-items-center mb-0">
                                                 <thead>

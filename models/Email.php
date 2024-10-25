@@ -46,6 +46,7 @@ class Email extends PHPMailer {
             $xemp_ruc = $row["emp_ruc"];
             $xemp_direc = $row["emp_direc"];
             $xusu_nom = $row["usu_nom"];
+            $xusu_correo = $row["usu_correo"];
             $xemp_telf = $row["emp_telf"];
             $xemp_email = $row["emp_email"];
         }
@@ -114,7 +115,7 @@ class Email extends PHPMailer {
 
         // Configuración de la codificación de caracteres.
         $this->CharSet = 'UTF-8'; // Establece la codificación de caracteres a UTF-8.
-        $this->addAddress('lenin.ih.fis@hotmail.com'); // Agrega la dirección de correo del destinatario.
+        $this->addAddress($xcli_email); // Agrega la dirección de correo del destinatario.
         $this->isHTML(true); // Indica que el cuerpo del correo es HTML.
         $this->Subject = "Nueva Cotizacion"; // Define el asunto del correo.
 
@@ -140,6 +141,7 @@ class Email extends PHPMailer {
         $cuerpo = str_replace("t_emp_ruc", $xemp_ruc, $cuerpo);
         $cuerpo = str_replace("t_emp_direc", $xemp_direc, $cuerpo);
         $cuerpo = str_replace("t_usu_nom", $xusu_nom, $cuerpo);
+        $cuerpo = str_replace("t_usu_correo", $xusu_correo, $cuerpo);
         $cuerpo = str_replace("t_emp_telf", $xemp_telf, $cuerpo);
         $cuerpo = str_replace("t_emp_email", $xemp_email, $cuerpo);
         $cuerpo = str_replace("t_listadodetalle", $tbody, $cuerpo);
@@ -184,6 +186,7 @@ class Email extends PHPMailer {
             $xemp_ruc = $row["emp_ruc"];
             $xemp_direc = $row["emp_direc"];
             $xusu_nom = $row["usu_nom"];
+            $xusu_correo = $row["usu_correo"];
             $xemp_telf = $row["emp_telf"];
             $xemp_email = $row["emp_email"];
         }
@@ -252,7 +255,7 @@ class Email extends PHPMailer {
 
         // Configuración de la codificación de caracteres.
         $this->CharSet = 'UTF-8'; // Establece la codificación de caracteres a UTF-8.
-        $this->addAddress('lenin.soft2020@gmail.com'); // Agrega la dirección de correo del destinatario.
+        $this->addAddress($xusu_correo); // Agrega la dirección de correo del destinatario.
         $this->isHTML(true); // Indica que el cuerpo del correo es HTML.
         $this->Subject = "Visto Cotizacion"; // Define el asunto del correo.
 
@@ -278,6 +281,7 @@ class Email extends PHPMailer {
         $cuerpo = str_replace("t_emp_ruc", $xemp_ruc, $cuerpo);
         $cuerpo = str_replace("t_emp_direc", $xemp_direc, $cuerpo);
         $cuerpo = str_replace("t_usu_nom", $xusu_nom, $cuerpo);
+        $cuerpo = str_replace("t_usu_correo", $xusu_correo, $cuerpo);
         $cuerpo = str_replace("t_emp_telf", $xemp_telf, $cuerpo);
         $cuerpo = str_replace("t_emp_email", $xemp_email, $cuerpo);
         $cuerpo = str_replace("t_listadodetalle", $tbody, $cuerpo);
@@ -285,7 +289,7 @@ class Email extends PHPMailer {
         $cuerpo = str_replace("t_cotiruta", "http://localhost:90/PERSONAL_COTIZADOR/view/VistoCotizacion?id=".$cot_id, $cuerpo);
 
         $this->Body = $cuerpo; // Asigna el cuerpo del correo.
-        $this->AltBody = strip_tags("Nueva Cotizacion"); // Establece un cuerpo alternativo sin HTML.
+        $this->AltBody = strip_tags("Visto Cotizacion"); // Establece un cuerpo alternativo sin HTML.
 
         $this->SMTPDebug = 0; // Establece el nivel de depuración: 0 = desactivado, 1 = errores y mensajes, 2 = mensajes detallados
         $this->Debugoutput = 'html'; // Salida de depuración como HTML
@@ -322,6 +326,7 @@ class Email extends PHPMailer {
             $xemp_ruc = $row["emp_ruc"];
             $xemp_direc = $row["emp_direc"];
             $xusu_nom = $row["usu_nom"];
+            $xusu_correo = $row["usu_correo"];
             $xemp_telf = $row["emp_telf"];
             $xemp_email = $row["emp_email"];
         }
@@ -390,8 +395,8 @@ class Email extends PHPMailer {
 
         // Configuración de la codificación de caracteres.
         $this->CharSet = 'UTF-8'; // Establece la codificación de caracteres a UTF-8.
-        $this->addAddress('lenin.soft2020@gmail.com'); // Agrega la dirección de correo del destinatario.
-        $this->addAddress('lenin.ih.fis@hotmail.com'); // Agrega la dirección de correo del destinatario.
+        $this->addAddress($xusu_correo); // Agrega la dirección de correo del destinatario.
+        $this->addAddress($xcli_email); // Agrega la dirección de correo del destinatario.
         $this->isHTML(true); // Indica que el cuerpo del correo es HTML.
         $this->Subject = "Respuesta Cotizacion"; // Define el asunto del correo.
 
@@ -417,6 +422,7 @@ class Email extends PHPMailer {
         $cuerpo = str_replace("t_emp_ruc", $xemp_ruc, $cuerpo);
         $cuerpo = str_replace("t_emp_direc", $xemp_direc, $cuerpo);
         $cuerpo = str_replace("t_usu_nom", $xusu_nom, $cuerpo);
+        $cuerpo = str_replace("t_usu_correo", $xusu_correo, $cuerpo);
         $cuerpo = str_replace("t_emp_telf", $xemp_telf, $cuerpo);
         $cuerpo = str_replace("t_emp_email", $xemp_email, $cuerpo);
 

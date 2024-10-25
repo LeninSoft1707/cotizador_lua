@@ -344,6 +344,233 @@
             // TODO: Retorna el resultado de la consulta.
             return $resultado = $sql->fetchAll();
         }
+
+        public function get_total_cotizaciones(){
+            // TODO: Establece la conexión a la base de datos.
+            $conectar = parent::Conexion();
+       
+            // TODO: Configura el conjunto de caracteres de la conexión a UTF-8.
+            parent::set_names();
+            
+            // TODO: Define una consulta SQL para cambiar el estado (`est`) de un contacto a 0, lo que efectivamente lo desactiva.
+            $sql = "SELECT COUNT(*) AS total FROM tm_cotizacion";
+            
+            // TODO: Prepara la consulta SQL.
+            $sql = $conectar->prepare($sql);
+            
+            // TODO: Ejecuta la consulta SQL para desactivar el contacto.
+            $sql->execute();
+            
+            // TODO: Retorna el resultado de la consulta.
+            return $resultado = $sql->fetchAll();
+       }
+
+        public function get_total_aceptada(){
+             // TODO: Establece la conexión a la base de datos.
+             $conectar = parent::Conexion();
+        
+             // TODO: Configura el conjunto de caracteres de la conexión a UTF-8.
+             parent::set_names();
+             
+             // TODO: Define una consulta SQL para cambiar el estado (`est`) de un contacto a 0, lo que efectivamente lo desactiva.
+             $sql = "SELECT COUNT(*) AS total FROM tm_cotizacion
+                     WHERE cot_tipo = 'Aceptado'";
+             
+             // TODO: Prepara la consulta SQL.
+             $sql = $conectar->prepare($sql);
+             
+             // TODO: Ejecuta la consulta SQL para desactivar el contacto.
+             $sql->execute();
+             
+             // TODO: Retorna el resultado de la consulta.
+             return $resultado = $sql->fetchAll();
+        }
+
+        public function get_total_rechazada(){
+            // TODO: Establece la conexión a la base de datos.
+            $conectar = parent::Conexion();
+   
+            // TODO: Configura el conjunto de caracteres de la conexión a UTF-8.
+            parent::set_names();
+            
+            // TODO: Define una consulta SQL para cambiar el estado (`est`) de un contacto a 0, lo que efectivamente lo desactiva.
+            $sql = "SELECT COUNT(*) AS total FROM tm_cotizacion
+                    WHERE cot_tipo = 'Rechazado'";
+            
+            // TODO: Prepara la consulta SQL.
+            $sql = $conectar->prepare($sql);
+            
+            // TODO: Ejecuta la consulta SQL para desactivar el contacto.
+            $sql->execute();
+            
+            // TODO: Retorna el resultado de la consulta.
+            return $resultado = $sql->fetchAll();
+        }
+
+        public function get_total_vista(){
+            // TODO: Establece la conexión a la base de datos.
+            $conectar = parent::Conexion();
+    
+            // TODO: Configura el conjunto de caracteres de la conexión a UTF-8.
+            parent::set_names();
+            
+            // TODO: Define una consulta SQL para cambiar el estado (`est`) de un contacto a 0, lo que efectivamente lo desactiva.
+            $sql = "SELECT COUNT(*) AS total FROM tm_cotizacion
+                    WHERE cot_tipo = 'Visto'";
+            
+            // TODO: Prepara la consulta SQL.
+            $sql = $conectar->prepare($sql);
+            
+            // TODO: Ejecuta la consulta SQL para desactivar el contacto.
+            $sql->execute();
+            
+            // TODO: Retorna el resultado de la consulta.
+            return $resultado = $sql->fetchAll();
+        }
+
+        public function get_total_enviada(){
+            // TODO: Establece la conexión a la base de datos.
+            $conectar = parent::Conexion();
+    
+            // TODO: Configura el conjunto de caracteres de la conexión a UTF-8.
+            parent::set_names();
+            
+            // TODO: Define una consulta SQL para cambiar el estado (`est`) de un contacto a 0, lo que efectivamente lo desactiva.
+            $sql = "SELECT COUNT(*) AS total FROM tm_cotizacion
+                    WHERE cot_tipo = 'Enviado'";
+            
+            // TODO: Prepara la consulta SQL.
+            $sql = $conectar->prepare($sql);
+            
+            // TODO: Ejecuta la consulta SQL para desactivar el contacto.
+            $sql->execute();
+            
+            // TODO: Retorna el resultado de la consulta.
+            return $resultado = $sql->fetchAll();
+        }
+
+        public function get_total_aceptada_x_usuario(){
+            // TODO: Establece la conexión a la base de datos.
+            $conectar = parent::Conexion();
+       
+            // TODO: Configura el conjunto de caracteres de la conexión a UTF-8.
+            parent::set_names();
+            
+            // TODO: Define una consulta SQL para cambiar el estado (`est`) de un contacto a 0, lo que efectivamente lo desactiva.
+            $sql = "SELECT usuario.usu_id, usuario.usu_nom AS usuario, COUNT(*) AS total
+                    FROM tm_cotizacion cot
+                    INNER JOIN tm_usuario usuario ON cot.usu_id = usuario.usu_id
+                    WHERE cot.cot_tipo = 'Aceptado'
+                    GROUP BY usuario.usu_id, usuario.usu_nom";
+            
+            // TODO: Prepara la consulta SQL.
+            $sql = $conectar->prepare($sql);
+            
+            // TODO: Ejecuta la consulta SQL para desactivar el contacto.
+            $sql->execute();
+            
+            // TODO: Retorna el resultado de la consulta.
+            return $resultado = $sql->fetchAll();
+       }
+
+       public function get_total_rechazada_x_usuario(){
+        // TODO: Establece la conexión a la base de datos.
+        $conectar = parent::Conexion();
+   
+        // TODO: Configura el conjunto de caracteres de la conexión a UTF-8.
+        parent::set_names();
+        
+        // TODO: Define una consulta SQL para cambiar el estado (`est`) de un contacto a 0, lo que efectivamente lo desactiva.
+        $sql = "SELECT usuario.usu_id, usuario.usu_nom AS usuario, COUNT(*) AS total
+                FROM tm_cotizacion cot
+                INNER JOIN tm_usuario usuario ON cot.usu_id = usuario.usu_id
+                WHERE cot.cot_tipo = 'Rechazado'
+                GROUP BY usuario.usu_id, usuario.usu_nom";
+        
+        // TODO: Prepara la consulta SQL.
+        $sql = $conectar->prepare($sql);
+        
+        // TODO: Ejecuta la consulta SQL para desactivar el contacto.
+        $sql->execute();
+        
+        // TODO: Retorna el resultado de la consulta.
+        return $resultado = $sql->fetchAll();
+       }
+
+       public function get_total_visto_x_usuario(){
+        // TODO: Establece la conexión a la base de datos.
+        $conectar = parent::Conexion();
+   
+        // TODO: Configura el conjunto de caracteres de la conexión a UTF-8.
+        parent::set_names();
+        
+        // TODO: Define una consulta SQL para cambiar el estado (`est`) de un contacto a 0, lo que efectivamente lo desactiva.
+        $sql = "SELECT usuario.usu_id, usuario.usu_nom AS usuario, COUNT(*) AS total
+                FROM tm_cotizacion cot
+                INNER JOIN tm_usuario usuario ON cot.usu_id = usuario.usu_id
+                WHERE cot.cot_tipo = 'Visto'
+                GROUP BY usuario.usu_id, usuario.usu_nom";
+        
+        // TODO: Prepara la consulta SQL.
+        $sql = $conectar->prepare($sql);
+        
+        // TODO: Ejecuta la consulta SQL para desactivar el contacto.
+        $sql->execute();
+        
+        // TODO: Retorna el resultado de la consulta.
+        return $resultado = $sql->fetchAll();
+       }
+
+       public function get_total_enviada_x_usuario(){
+        // TODO: Establece la conexión a la base de datos.
+        $conectar = parent::Conexion();
+   
+        // TODO: Configura el conjunto de caracteres de la conexión a UTF-8.
+        parent::set_names();
+        
+        // TODO: Define una consulta SQL para cambiar el estado (`est`) de un contacto a 0, lo que efectivamente lo desactiva.
+        $sql = "SELECT usuario.usu_id, usuario.usu_nom AS usuario, COUNT(*) AS total
+                FROM tm_cotizacion cot
+                INNER JOIN tm_usuario usuario ON cot.usu_id = usuario.usu_id
+                WHERE cot.cot_tipo = 'Enviado'
+                GROUP BY usuario.usu_id, usuario.usu_nom";
+        
+        // TODO: Prepara la consulta SQL.
+        $sql = $conectar->prepare($sql);
+        
+        // TODO: Ejecuta la consulta SQL para desactivar el contacto.
+        $sql->execute();
+        
+        // TODO: Retorna el resultado de la consulta.
+        return $resultado = $sql->fetchAll();
+       }
+
+       public function get_porcentaje_cotizaciones() {
+        // Establece la conexión a la base de datos.
+        $conectar = parent::Conexion();
+    
+        // Configura el conjunto de caracteres de la conexión a UTF-8.
+        parent::set_names();
+    
+        // Define la consulta SQL para obtener los porcentajes
+        $sql = "SELECT 
+                    (SUM(CASE WHEN cot_tipo = 'Enviado' THEN 1 ELSE 0 END) / NULLIF(COUNT(*), 0)) * 100 AS porcentaje_enviadas,
+                    (SUM(CASE WHEN cot_tipo = 'Rechazado' THEN 1 ELSE 0 END) / NULLIF(COUNT(*), 0)) * 100 AS porcentaje_rechazadas,
+                    (SUM(CASE WHEN cot_tipo = 'Visto' THEN 1 ELSE 0 END) / NULLIF(COUNT(*), 0)) * 100 AS porcentaje_vistas,
+                    (SUM(CASE WHEN cot_tipo = 'Aceptado' THEN 1 ELSE 0 END) / NULLIF(COUNT(*), 0)) * 100 AS porcentaje_aceptadas
+                FROM 
+                    tm_cotizacion";
+    
+        // Prepara la consulta SQL.
+        $sql = $conectar->prepare($sql);
+    
+        // Ejecuta la consulta SQL.
+        $sql->execute();
+    
+        // Retorna el resultado de la consulta (una sola fila).
+        return $resultado = $sql->fetch(PDO::FETCH_ASSOC);
+    }
+    
     }
 
 

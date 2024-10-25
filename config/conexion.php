@@ -14,6 +14,9 @@
             try {
                 // TODO: Crea una nueva instancia de PDO para conectarse a la base de datos 'cotizador' en 'localhost' con el usuario 'root' y contraseña 'root'.
                 $conectar = $this->dbh = new PDO("mysql:local=localhost;dbname=cotizador", "root", "root");
+
+                // Establecer la zona horaria para la sesión MySQL a UTC -5
+                $this->dbh->exec("SET time_zone = '-05:00';");
                 
                 // TODO: Retorna la conexión si es exitosa.
                 return $conectar;

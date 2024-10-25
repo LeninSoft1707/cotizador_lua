@@ -13,12 +13,6 @@
   </title>
   <?php require_once("../Html/Head.php") ?>
 
-  <!-- Bootstrap CSS -->
-  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css"> -->
-
-  <!-- Font Awesome para iconos -->
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrQkTy3KqD95w2e5hYh8EZFhtjqx47BQwEJNY58U4o3jbMW0HdJgSBXq8R+XZjW8xKqk5GHkMk/4YB1Qw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
-
   <!-- Estilos Personalizados -->
   <style>
     body {
@@ -149,27 +143,6 @@
       </div>
     </div>
 
-    <!-- <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl no-print" id="navbarBlur" data-scroll="true">
-      <div class="container-fluid py-1 px-3">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Página</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Eventos & Decoraciones LUA</li>
-          </ol>
-          <h6 class="font-weight-bolder mb-0">Cotizaciones</h6>
-        </nav>
-
-        <div class="alert alert-danger alert-dismissible text-white" role="alert">
-          <span class="text-sm">A simple danger alert with <a href="javascript:;" class="alert-link text-white">an example link</a>. Give it a click if you like.</span>
-          <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-
-      </div>
-    </nav> -->
-    <!-- End Navbar -->
-
     <div class="container-fluid py-4">
       <div class="row">
         <div class="col-12">
@@ -180,11 +153,6 @@
                   <!-- <h6 class="text-white text-capitalize ps-3 d-inline"><small>Rechazado</small></h6> -->
                   <span id="v_titulo_respuesta"></span>
               </div>
-
-              <!-- <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Cotización Nro: <small id="v_cot_id">##</small></h6>
-                <h6 class="text-white text-capitalize ps-3"><small>Rechazado</small></h6>
-              </div> -->
             </div>
 
 
@@ -539,10 +507,6 @@
       <!-- Tu archivo JavaScript -->
       <script type="text/javascript" src="viewcotizacion.js"></script>
 
-      <!-- Bootstrap JS y Dependencias -->
-      <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> -->
-
-      <!-- Funciones adicionales -->
       <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {

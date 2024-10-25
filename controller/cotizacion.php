@@ -303,51 +303,221 @@
 
         case "listarporusuario":
             // Validar que se reciban los datos
-           if (isset($_POST["usu_id"])) {
-           
-               $datos = $cotizacion->get_cotizacion_x_usuario($_POST["usu_id"]);
-               $data = Array();
-               foreach($datos as $row){
-                   $sub_array = array();
-                   $sub_array[] = htmlspecialchars($row["cot_id"]); // Evita XSS
-                   $sub_array[] = htmlspecialchars($row["cli_nom"]); // Evita XSS
-                   $sub_array[] = htmlspecialchars($row["cli_ruc"]); // Evita XSS
-                   $sub_array[] = htmlspecialchars($row["con_nom"]); // Evita XSS
-                   $sub_array[] = htmlspecialchars($row["con_email"]); // Evita XSS
-                   $sub_array[] = htmlspecialchars($row["cot_subtotal"]); // Evita XSS
-                   $sub_array[] = htmlspecialchars($row["cot_profit"]); // Evita XSS
-                   $sub_array[] = htmlspecialchars($row["cot_total"]); // Evita XSS
-                   $sub_array[] = htmlspecialchars($row["fech_crea_dma"]); // Evita XSS
-                   
-                   
-                   if($row["cot_tipo"]=='Rechazado'){
-                    $sub_array[] = "<small class='text-xxs alert alert-danger text-white text-uppercase' style='padding: 8px 8px; important!'>Rechazado</small>";
-                   }else if($row["cot_tipo"]=='Aceptado'){
-                    $sub_array[] = "<small class='text-xs alert alert-success text-white text-uppercase' style='padding: 8px 8px; important!'>Aceptado</small>";
-                   }else if($row["cot_tipo"]=='Borrador'){
-                    $sub_array[] = "<small class='text-xs alert alert-info text-white text-uppercase' style='padding: 8px 8px; important!'>Borrador</small>";
-                   }else if($row["cot_tipo"]=='visto'){
-                    $sub_array[] = "<small class='text-xs alert alert-dark text-white text-uppercase' style='padding: 8px 8px; important!'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Visto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</small>";
-                   }else if($row["cot_tipo"]=='Enviado'){
-                    $sub_array[] = "<small class='text-xs alert alert-warning text-white text-uppercase' style='padding: 8px 8px; important!'>&nbsp;&nbsp;Enviado&nbsp;&nbsp;</small>";
-                   }
-                   
-                   $sub_array[] = '<button type="button" onClick="verfecha('.$row["cot_id"].')" id="'.$row["cot_id"].'" class="btn bg-gradient-white w-100 pd-0 mi-btn"><i class="material-icons opacity-10">calendar_month</i></button>';
-                  
-                   $data[] = $sub_array;
-               }
-    
-               $results = array(
-                   "sEcho" => 1,
-                   "iTotalRecords" => count($data),
-                   "iTotalDisplayRecords" => count($data),
-                   "aaData" => $data
-               );
-               echo json_encode($results);
-           }
+            if (isset($_POST["usu_id"])) {
+                $datos = $cotizacion->get_cotizacion_x_usuario($_POST["usu_id"]);
+                $data = Array();
+                foreach($datos as $row){
+                    $sub_array = array();
+                    $sub_array[] = htmlspecialchars($row["cot_id"] ?? ''); // Evita XSS
+                    $sub_array[] = htmlspecialchars($row["cli_nom"] ?? ''); // Evita XSS
+                    $sub_array[] = htmlspecialchars($row["cli_ruc"] ?? ''); // Evita XSS
+                    $sub_array[] = htmlspecialchars($row["con_nom"] ?? ''); // Evita XSS
+                    $sub_array[] = htmlspecialchars($row["con_email"] ?? ''); // Evita XSS
+                    $sub_array[] = htmlspecialchars($row["cot_subtotal"] ?? ''); // Evita XSS
+                    $sub_array[] = htmlspecialchars($row["cot_profit"] ?? ''); // Evita XSS
+                    $sub_array[] = htmlspecialchars($row["cot_total"] ?? ''); // Evita XSS
+                    $sub_array[] = htmlspecialchars($row["fech_crea_dma"] ?? ''); // Evita XSS
+                    
+                    // Estilo para cot_tipo
+                    if($row["cot_tipo"]=='Rechazado'){
+                        $sub_array[] = "<small class='text-xxs alert alert-danger text-white text-uppercase' style='padding: 8px 8px; important!'>Rechazado</small>";
+                    } else if($row["cot_tipo"]=='Aceptado'){
+                        $sub_array[] = "<small class='text-xs alert alert-success text-white text-uppercase' style='padding: 8px 8px; important!'>Aceptado</small>";
+                    } else if($row["cot_tipo"]=='Borrador'){
+                        $sub_array[] = "<small class='text-xs alert alert-info text-white text-uppercase' style='padding: 8px 8px; important!'>Borrador</small>";
+                    } else if($row["cot_tipo"]=='visto'){
+                        $sub_array[] = "<small class='text-xs alert alert-dark text-white text-uppercase' style='padding: 8px 8px; important!'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Visto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</small>";
+                    } else if($row["cot_tipo"]=='Enviado'){
+                        $sub_array[] = "<small class='text-xs alert alert-warning text-white text-uppercase' style='padding: 8px 8px; important!'>&nbsp;&nbsp;Enviado&nbsp;&nbsp;</small>";
+                    }
+                    
+                    $sub_array[] = '<button type="button" onClick="verfecha('.$row["cot_id"].')" id="'.$row["cot_id"].'" class="btn bg-gradient-white w-100 pd-0 mi-btn"><i class="material-icons opacity-10">calendar_month</i></button>';
+                    
+                    $data[] = $sub_array;
+                }
+        
+                $results = array(
+                    "sEcho" => 1,
+                    "iTotalRecords" => count($data),
+                    "iTotalDisplayRecords" => count($data),
+                    "aaData" => $data
+                );
+                echo json_encode($results);
+            }
         break;
         
 
+        case "totalcotizaciones":
+            // Validar que se reciban los datos
+            // Insertar una nueva cotización
+            $datos = $cotizacion->get_total_cotizaciones();
+            if(is_array($datos)==true and count($datos) > 0){
+                foreach($datos as $row){
+                    $output["total"] = $row["total"];
+                }
+            }
+            echo json_encode($output);
+        break;
 
+        case "totalaceptada":
+            // Validar que se reciban los datos
+            // Insertar una nueva cotización
+            $datos = $cotizacion->get_total_aceptada();
+            if(is_array($datos)==true and count($datos) > 0){
+                foreach($datos as $row){
+                    $output["total"] = $row["total"];
+                }
+            }
+            echo json_encode($output);
+        break;
+
+        case "totalrechazada":
+            // Validar que se reciban los datos
+            // Insertar una nueva cotización
+            $datos = $cotizacion->get_total_rechazada();
+            if(is_array($datos)==true and count($datos) > 0){
+                foreach($datos as $row){
+                    $output["total"] = $row["total"];
+                }
+            }
+            echo json_encode($output);
+        break;
+
+        case "totalvista":
+            // Validar que se reciban los datos
+            // Insertar una nueva cotización
+            $datos = $cotizacion->get_total_vista();
+            if(is_array($datos)==true and count($datos) > 0){
+                foreach($datos as $row){
+                    $output["total"] = $row["total"];
+                }
+            }
+            echo json_encode($output);
+        break;
+
+        case "totalenviado":
+            // Validar que se reciban los datos
+            // Insertar una nueva cotización
+            $datos = $cotizacion->get_total_enviada();
+            if(is_array($datos)==true and count($datos) > 0){
+                foreach($datos as $row){
+                    $output["total"] = $row["total"];
+                }
+            }
+            echo json_encode($output);
+        break;
+        
+        case 'totalaceptadausuario':
+            // Obtener los datos de cotizaciones aceptadas por comercio
+            $datos = $cotizacion->get_total_aceptada_x_usuario();
+        
+            // Inicializar los arrays para las etiquetas y los totales
+            $output = array(
+                "labels" => array(),
+                "totales" => array()
+            );
+        
+            // Verificar que se obtuvieron datos y recorrerlos
+            if(is_array($datos) && count($datos) > 0) {
+                foreach($datos as $row) {
+                    $output["labels"][] =  $row["usuario"]; // Etiquetas de comercio
+                    $output["totales"][] = $row["total"]; // Total aceptado por comercio
+                }
+            }
+        
+            // Enviar la respuesta en formato JSON
+            echo json_encode($output);
+        break; 
+        
+        case 'totalrechazadausuario':
+            // Obtener los datos de cotizaciones aceptadas por comercio
+            $datos = $cotizacion->get_total_rechazada_x_usuario();
+        
+            // Inicializar los arrays para las etiquetas y los totales
+            $output = array(
+                "labels" => array(),
+                "totales" => array()
+            );
+        
+            // Verificar que se obtuvieron datos y recorrerlos
+            if(is_array($datos) && count($datos) > 0) {
+                foreach($datos as $row) {
+                    $output["labels"][] =  $row["usuario"]; // Etiquetas de comercio
+                    $output["totales"][] = $row["total"]; // Total aceptado por comercio
+                }
+            }
+        
+            // Enviar la respuesta en formato JSON
+            echo json_encode($output);
+        break;
+
+        case 'totalvistousuario':
+            // Obtener los datos de cotizaciones aceptadas por comercio
+            $datos = $cotizacion->get_total_visto_x_usuario();
+        
+            // Inicializar los arrays para las etiquetas y los totales
+            $output = array(
+                "labels" => array(),
+                "totales" => array()
+            );
+        
+            // Verificar que se obtuvieron datos y recorrerlos
+            if(is_array($datos) && count($datos) > 0) {
+                foreach($datos as $row) {
+                    $output["labels"][] =  $row["usuario"]; // Etiquetas de comercio
+                    $output["totales"][] = $row["total"]; // Total aceptado por comercio
+                }
+            }
+        
+            // Enviar la respuesta en formato JSON
+            echo json_encode($output);
+        break;  
+        
+        case 'totalenviadausuario':
+            // Obtener los datos de cotizaciones aceptadas por comercio
+            $datos = $cotizacion->get_total_enviada_x_usuario();
+        
+            // Inicializar los arrays para las etiquetas y los totales
+            $output = array(
+                "labels" => array(),
+                "totales" => array()
+            );
+        
+            // Verificar que se obtuvieron datos y recorrerlos
+            if(is_array($datos) && count($datos) > 0) {
+                foreach($datos as $row) {
+                    $output["labels"][] =  $row["usuario"]; // Etiquetas de comercio
+                    $output["totales"][] = $row["total"]; // Total aceptado por comercio
+                }
+            }
+        
+            // Enviar la respuesta en formato JSON
+            echo json_encode($output);
+        break;  
+
+        case 'porcentajecotizaciones':
+            // Obtener los porcentajes de cotizaciones
+            $datos = $cotizacion->get_porcentaje_cotizaciones();
+            
+            // Inicializar el array de salida
+            $output = [
+                "porcentajeAceptada" => 0,
+                "porcentajeRechazada" => 0,
+                "porcentajeVista" => 0,
+                "porcentajeEnviada" => 0,
+            ];
+            
+            // Verificar si se obtuvieron datos y asignar los porcentajes
+            if (is_array($datos) && count($datos) > 0) {
+                $output["porcentajeAceptada"] = $datos["porcentaje_aceptadas"];
+                $output["porcentajeRechazada"] = $datos["porcentaje_rechazadas"];
+                $output["porcentajeVista"] = $datos["porcentaje_vistas"];
+                $output["porcentajeEnviada"] = $datos["porcentaje_enviadas"];
+            }
+        
+            // Enviar la respuesta en formato JSON
+            echo json_encode($output);
+            break;
+        
     }
 ?>

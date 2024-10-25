@@ -12,7 +12,7 @@
                 </div>
                 <div class="collapse show" id="collapseFieldset2">
                     <fieldset>
-                        <div class="row">
+                        <div class="row mx-3">
                             <div class="col-md-6 mb-3">
                                 <label for="cat_id" class="form-label">Categoria:</label>
                                 <select class="form-control" id="cat_id" name="cat_id">
@@ -37,13 +37,13 @@
                                 <label for="cotd_total" class="form-label">Total:</label>
                                 <input type="number" class="form-control" id="cotd_total" name="cotd_total" placeholder="0.00" required readonly>
                             </div>
-                            <div class="col-md-3 mb-3 d-flex justify-content-center align-items-center">
+                            <div class="col-md-3 mb-3 d-flex flex-column justify-content-end" style="height: 100%;">
                                 <label for="cotd_total" class="form-label">&nbsp;</label>
-                                <button type="button" id="btnagregardetalle" class="btn bg-gradient-success w-85 mb-0 toast-btn" style="padding: 6px 0px 6px 0px !important;" data-toggle="modal" data-target="successToast">
+                                <button type="button" id="btnagregardetalle" class="btn bg-gradient-success w-100 mb-0 toast-btn" style="padding: 6px 0px 6px 0px !important;" data-toggle="modal" data-target="successToast">
                                     Agregar
                                 </button>
                             </div>
-                            <div class="card-body pb-3 pt-3">
+                            <div class="card-body p-2">
                                 <div class="table-responsive p-0">
                                     <table id="detalle_data" class="table align-items-center mb-0">
                                         <thead>
@@ -62,7 +62,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="invoice">
+                                <div class="invoice pb-2">
                                     <div class="invoice-content">
                                         <div class="invoice-price">
                                             <div class="invoice-price-left">
@@ -80,7 +80,7 @@
                                                     </div>
                                                 </div>      
                                             </div>
-                                            <div class="invoice-price-right">
+                                            <div class="invoice-price-right me-3">
                                                 <small>TOTAL</small>
                                                 <span class="f-w-600" id="cot_total"></span>
                                             </div>

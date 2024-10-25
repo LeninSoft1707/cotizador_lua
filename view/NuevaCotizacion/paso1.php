@@ -12,29 +12,29 @@
                 </div>
                 <div class="collapse show" id="collapseFieldset1">
                     <fieldset>
-                        <div class="mb-3">
+                        <div class="mb-3 mx-3">
                             <label for="cli_id" class="form-label">Cliente:</label>
                             <select class="form-control" id="cli_id" name="cli_id">
                             </select>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 mx-3">
                             <label for="con_id" class="form-label">Contacto:</label>
                             <select class="form-control" id="con_id" name="con_id">
                             </select>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 mx-3">
                             <label for="cli_ruc" class="form-label">DNI/RUC:</label>
                             <input type="text" class="form-control" id="cli_ruc" name="cli_ruc" placeholder="Ingrese su Dni o Ruc" required>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 mx-3">
                             <label for="con_telf" class="form-label">Telefono Contacto:</label>
                             <input type="tel" class="form-control" id="con_telf" name="con_telf" placeholder="Ingrese su Telefono" required>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 mx-3">
                             <label for="con_email" class="form-label">Correo Contacto:</label>
                             <input type="text" class="form-control" id="con_email" name="con_email" placeholder="Ingrese su Correo" required>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 mx-3">
                             <label for="cot_descrip" class="form-label">Descripción:</label>
                             <textarea class="form-control" id="cot_descrip" name="cot_descrip" rows="3" placeholder="Ingrese Descripción" required></textarea>
                         </div>

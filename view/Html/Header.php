@@ -1,74 +1,83 @@
-<div class="fixed-plugin ps">
-        <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
-        <i class="material-icons py-2">settings</i>
-        </a>
-        <div class="card shadow-lg">
-        <div class="card-header pb-0 pt-3">
-            <div class="float-start">
-            <h5 class="mt-3 mb-0">Material UI Configurator</h5>
-            <p>See our dashboard options.</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card my-4">
+                <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
+                    <div class="container-fluid py-0 px-0">
+                        <div>
+                            <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+                                <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Página</a></li>
+                                <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Admin</li>
+                            </ol>
+                            <h6 class="font-weight-bolder mb-0">Administrador</h6>
+                        </div>
+                        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+                            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                                <div class="input-group input-group-outline justify-content-center">
+                                    <div class="navbar-nav justify-content-center">
+                                        <ul class="navbar-nav justify-content-center">
+                                            <li class="nav-item d-flex align-items-center">
+                                                <a class="nav-link px-2 d-flex align-items-center active" aria-current="page" href="../Home/index.php">
+                                                <i class="fa fa-chart-pie opacity-6 text-dark me-1" aria-hidden="true"></i>
+                                                Inicio
+                                                </a>
+                                            </li>
+                                            <li class="nav-item d-flex align-items-center">
+                                                <a class="nav-link px-0 d-flex align-items-center active" href="../pages/profile.html">
+                                                <i class="fa fa-user opacity-6 text-dark me-1" aria-hidden="true"></i>
+                                                Perfil
+                                                </a>
+                                            </li>
+                                            <li class="nav-item d-flex align-items-center">
+                                                <a class="nav-link px-2 d-flex align-items-center active" href="../pages/sign-up.html">
+                                                <i class="fas fa-user-circle opacity-6 text-dark me-1" aria-hidden="true"></i>
+                                                Calendario
+                                                </a>
+                                            </li>
+                                            <li class="nav-item d-flex align-items-center">
+                                                <a class="nav-link px-0 d-flex align-items-center active" href="../Logout/logout.php">
+                                                <i class="fas fa-key opacity-6 text-dark me-1" aria-hidden="true"></i>
+                                                Cerrar Sesión
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <ul class="navbar-nav  justify-content-center">             
+                                        <li class="nav-item px-2 d-flex align-items-center">
+                                            <div class="col-auto">
+                                                <div class="avatar avatar-xl position-relative">
+                                                <img src="../../assets/img/user2.png" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                                                </div> 
+                                            </div>
+                                        </li>
+                                        <li class="nav-item px-2 d-flex align-items-center">
+                                            <div class="col-auto my-auto">
+                                                <div class="h-100">
+                                                    <h6 class="mb-1">
+                                                        <?php echo $_SESSION["usu_nom"]?>
+                                                    </h6>
+                                                    <p class="mb-0 font-weight-normal text-sm">
+                                                        <?php echo $_SESSION["usu_correo"]?>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item d-xl-none ps-0 d-flex align-items-center">
+                                            <a href="javascript:;" class="nav-link p-0 text-body" id="iconNavbarSidenav">
+                                                <div class="sidenav-toggler-inner">
+                                                    <i class="sidenav-toggler-line"></i>
+                                                    <i class="sidenav-toggler-line"></i>
+                                                    <i class="sidenav-toggler-line"></i>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                </nav>
             </div>
-            <div class="float-end mt-4">
-            <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
-                <i class="material-icons">clear</i>
-            </button>
-            </div>
-            <!-- End Toggle Button -->
-        </div>
-        <hr class="horizontal dark my-1">
-        <div class="card-body pt-sm-3 pt-0">
-            <!-- Sidebar Backgrounds -->
-            <div>
-            <h6 class="mb-0">Sidebar Colors</h6>
-            </div>
-            <a href="javascript:void(0)" class="switch-trigger background-color">
-            <div class="badge-colors my-2 text-start">
-                <span class="badge filter bg-gradient-primary active" data-color="primary" onclick="sidebarColor(this)"></span>
-                <span class="badge filter bg-gradient-dark" data-color="dark" onclick="sidebarColor(this)"></span>
-                <span class="badge filter bg-gradient-info" data-color="info" onclick="sidebarColor(this)"></span>
-                <span class="badge filter bg-gradient-success" data-color="success" onclick="sidebarColor(this)"></span>
-                <span class="badge filter bg-gradient-warning" data-color="warning" onclick="sidebarColor(this)"></span>
-                <span class="badge filter bg-gradient-danger" data-color="danger" onclick="sidebarColor(this)"></span>
-            </div>
-            </a>
-            <!-- Sidenav Type -->
-            <div class="mt-3">
-            <h6 class="mb-0">Sidenav Type</h6>
-            <p class="text-sm">Choose between 2 different sidenav types.</p>
-            </div>
-            <div class="d-flex">
-            <button class="btn bg-gradient-dark px-3 mb-2 active" data-class="bg-gradient-dark" onclick="sidebarType(this)">Dark</button>
-            <button class="btn bg-gradient-dark px-3 mb-2 ms-2" data-class="bg-transparent" onclick="sidebarType(this)">Transparent</button>
-            <button class="btn bg-gradient-dark px-3 mb-2 ms-2" data-class="bg-white" onclick="sidebarType(this)">White</button>
-            </div>
-            <p class="text-sm d-xl-none d-block mt-2">You can change the sidenav type just on desktop view.</p>
-            <!-- Navbar Fixed -->
-            <div class="mt-3 d-flex">
-            <h6 class="mb-0">Navbar Fixed</h6>
-            <div class="form-check form-switch ps-0 ms-auto my-auto">
-                <input class="form-check-input mt-1 ms-auto" type="checkbox" id="navbarFixed" onclick="navbarFixed(this)" checked="true">
-            </div>
-            </div>
-            <hr class="horizontal dark my-3">
-            <div class="mt-2 d-flex">
-            <h6 class="mb-0">Light / Dark</h6>
-            <div class="form-check form-switch ps-0 ms-auto my-auto">
-                <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
-            </div>
-            </div>
-            <hr class="horizontal dark my-sm-4">
-            <a class="btn bg-gradient-info w-100" href="https://www.creative-tim.com/product/material-dashboard-pro">Free Download</a>
-            <a class="btn btn-outline-dark w-100" href="https://www.creative-tim.com/learning-lab/bootstrap/overview/material-dashboard">View documentation</a>
-            <div class="w-100 text-center">
-            <span></span>
-            <h6 class="mt-3">Thank you for sharing!</h6>
-            <a href="https://twitter.com/intent/tweet?text=Check%20Material%20UI%20Dashboard%20made%20by%20%40CreativeTim%20%23webdesign%20%23dashboard%20%23bootstrap5&amp;url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fsoft-ui-dashboard" class="btn btn-dark mb-0 me-2" target="_blank">
-                <i class="fab fa-twitter me-1" aria-hidden="true"></i> Tweet
-            </a>
-            <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/material-dashboard" class="btn btn-dark mb-0 me-2" target="_blank">
-                <i class="fab fa-facebook-square me-1" aria-hidden="true"></i> Share
-            </a>
-            </div>
-        </div>
         </div>
     </div>
+</div>  
